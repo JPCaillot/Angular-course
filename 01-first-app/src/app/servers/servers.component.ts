@@ -19,6 +19,9 @@ export class ServersComponent {
 
   username = '';
 
+  detailsOn = false;
+  detailToggles = [];
+
   constructor() {
     setTimeout(() => {
       this.allowNewServer = true;
@@ -50,5 +53,11 @@ export class ServersComponent {
 
   onResetUsername() {
     this.username = '';
+  }
+
+  onToggleDetails() {
+    this.detailsOn = !this.detailsOn;
+    //this.detailToggles.push(this.detailToggles.length + 1);
+    this.detailToggles.push(new Date());
   }
 }
