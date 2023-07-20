@@ -1,0 +1,43 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <button
+        class="btn btn-primary"
+        (click)="onlyOdd = !onlyOdd">Only show odd numbers</button>
+      <br><br>
+      <ul class="list-group">
+        <div *appUnless="!onlyOdd">
+        <!-- opposite of ngIf -->
+          <li
+            class="list-group-item" [ngClass]="{odd: number % 2 !== 0}" [ngStyle]="{backgroundColor: number % 2 !== 0 ? 'yellow' : 'transparent'}" *ngFor="let number of oddNumbers">
+             {{ number }}
+          </li>
+        </div>
+        <div *ngIf="!onlyOdd">
+          <li
+            class="list-group-item" [ngClass]="{odd: number % 2 !== 0}" [ngStyle]="{backgroundColor: number % 2 !== 0 ? 'yellow' : 'transparent'}" *ngFor="let number of evenNumbers">
+             {{ number }}
+          </li>
+        </div>
+        <!-- <ng-template [ngIf]="!onlyOdd">
+          <div>
+            <li
+            class="list-group-item" [ngClass]="{odd: number % 2 !== 0}" [ngStyle]="{backgroundColor: number % 2 !== 0 ? 'yellow' : 'transparent'}" *ngFor="let number of evenNumbers">
+             {{ number }}
+            </li>
+          </div>
+        </ng-template>
+        this is how the * works behind the scenes -->
+      </ul>
+      <p appBasicHighlight>Style me with basic directive!</p>
+      <p [appBetterHighlight]="'red'" defaultColor="yellow">Style me with a better directive!</p>
+      <!-- this is a demo of 2 special cases: when you set a directive property with an alias equal to the directive name itself, where you can point to both with []; and when you're binding a string, you can ditch the square brackets and then the single quotes altogether. -->
+      <div [ngSwitch]="value">
+        <p *ngSwitchCase="5">Value is 5</p>
+        <p *ngSwitchCase="10">Value is 10</p>
+        <p *ngSwitchCase="100">Value is 100</p>
+        <p *ngSwitchDefault>Value is default</p>
+      </div>
+    </div>
+  </div>
+</div>
